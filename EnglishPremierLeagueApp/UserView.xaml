@@ -1,0 +1,16 @@
+﻿<Window x:Class="EnglishPremierLeagueApp.UserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnglishPremierLeagueApp"
+        mc:Ignorable="d"
+        Title="UserView" Height="500" Width="700">
+    <Grid>
+        <TabControl x:Name="UserTabControl" HorizontalAlignment="Left" Height="445" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="694">
+            <TabItem x:Name="MainItem" Header="Table"/>
+            <TabItem x:Name="CalendarItem" Header ="Calendar"/>
+        </TabControl>
+
+    </Grid>
+</Window>

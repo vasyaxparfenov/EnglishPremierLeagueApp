@@ -1,0 +1,39 @@
+﻿<Window x:Class="EnglishPremierLeagueApp.GameView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnglishPremierLeagueApp"
+        mc:Ignorable="d"
+        Title="Game" Height="400" Width="485.87">
+    <Grid>
+        <Label x:Name="Home" HorizontalContentAlignment="Center"  Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="186" Height="23"/>
+        <Label x:Name="Guest" HorizontalContentAlignment="Center" Content="" HorizontalAlignment="Left" Margin="293,24,0,0" VerticalAlignment="Top" Width="186" Height="23"/>
+        <TextBox x:Name="HomeScore" HorizontalAlignment="Left" TextAlignment="Center" Height="23" Margin="186,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="21" RenderTransformOrigin="-0.616,0.648" />
+        <TextBox x:Name="GuestScore" HorizontalAlignment="Left" TextAlignment="Center" Height="23" Margin="272,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="21"/>
+        <ListView x:Name="listBoxOfHomeGoals" HorizontalAlignment="Left" Height="137" Margin="10,142,0,0" VerticalAlignment="Top" Width="176">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Player" Width="140" DisplayMemberBinding="{Binding Path = Player.Name}"/>
+                    <GridViewColumn Header="'" Width="35" DisplayMemberBinding="{Binding Path = Minute}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listBoxOfGuestGoals" HorizontalAlignment="Left" Height="137" Margin="293,142,0,0" VerticalAlignment="Top" Width="176">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Player" Width="140" DisplayMemberBinding="{Binding Path = Player.Name}"/>
+                    <GridViewColumn Header="'" Width="35" DisplayMemberBinding="{Binding Path = Minute}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ComboBox x:Name="HomeScorer" HorizontalAlignment="Left" Margin="36,55,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="GuestScorer" HorizontalAlignment="Left" Margin="322,56,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.451,0.016"/>
+        <ComboBox x:Name="Minute" HorizontalAlignment="Left" Margin="223,55,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="-0.117,-0.226"/>
+        <Button x:Name="HomeAdd" Content="Add" HorizontalAlignment="Left" Margin="73,96,0,0" VerticalAlignment="Top" Width="57" Height="22" Click="HomeAdd_Click"/>
+        <Button x:Name="GuestAdd" Content="Add" HorizontalAlignment="Left" Margin="356,96,0,0" VerticalAlignment="Top" Width="57" Height="22" Click="GuestAdd_Click"/>
+        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="293,317,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.375,-0.385" Click="SaveButton_Click"/>
+        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="394,317,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.304,-0.684" Click="Cancel_Click"/>
+
+    </Grid>
+</Window>
