@@ -4,11 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EnglishPremierLeagueApp"
-             mc:Ignorable="d" Width="400" Height="445">
+             mc:Ignorable="d" Width="700" Height="575">
     <Grid Background="White">
         <ComboBox x:Name="SeasonsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,10,0,0"/>
-        <DataGrid x:Name="Table" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="Auto" ColumnWidth="Auto" AutoGenerateColumns="True"/>
-        <DataGrid x:Name="Scoreboard" HorizontalAlignment="Left" Margin="359,49,0,0" VerticalAlignment="Top" Height="Auto" Width="Auto" AutoGenerateColumns="True"/>
+        <DataGrid x:Name="Table" SelectionMode="Single"  IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="Auto" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width = "Auto"  Binding="{Binding Path = Team.Name}"/>
+                <DataGridTextColumn Header= "Points" Width = "Auto"  Binding ="{Binding Path = Points}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="Scoreboard" SelectionMode="Single" HorizontalAlignment="Left" Margin="458,49,0,0" VerticalAlignment="Top" Height="Auto" Width="200" IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header ="Name" Width ="80*" Binding="{Binding Path = Name}"/>
+                <DataGridTextColumn Header ="Goals" Width ="20*" Binding="{Binding Path = Goals.Count}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>

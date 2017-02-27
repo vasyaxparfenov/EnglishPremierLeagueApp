@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnglishPremierLeagueApp"
         mc:Ignorable="d"
-        Title="UserView" Height="500" Width="700">
+        Title="UserView" Height="700" Width="700">
     <Grid>
-        <TabControl x:Name="UserTabControl" HorizontalAlignment="Left" Height="445" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="694">
+        <TabControl x:Name="UserTabControl" HorizontalAlignment="Left" Height="575" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="694">
             <TabItem x:Name="MainItem" Header="Table"/>
             <TabItem x:Name="CalendarItem" Header ="Calendar"/>
         </TabControl>

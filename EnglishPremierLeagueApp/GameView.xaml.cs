@@ -23,7 +23,7 @@ namespace EnglishPremierLeagueApp
     public partial class GameView : Window
     {
         public Game game;
-        FootballLeagueEntities Db = new FootballLeagueEntities();
+       
         ObservableCollection<Goal> homeGoals;
         ObservableCollection<Goal> guestGoals;
         BindingList<Goal> goals;
@@ -31,25 +31,25 @@ namespace EnglishPremierLeagueApp
         public GameView(Game currentGame)
         {
             InitializeComponent();
-            Db.Goals.Load();
+            App.Db.Goals.Load();
             game = currentGame;
             Home.Content = game.HomeTeam.Name;
             HomeScore.Text = game.HomeTeamScore?.ToString();
             GuestScore.Text = game.GuestTeamScore?.ToString();
             Guest.Content = game.GuestTeam.Name;
-            goals = Db.Goals.Local.ToBindingList();
+            goals = App.Db.Goals.Local.ToBindingList();
             listBoxOfHomeGoals.ItemsSource =
                 homeGoals =
                     new ObservableCollection<Goal>(
-                        Db.Goals.Local.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.HomeTeamId));
+                        App.Db.Goals.Local.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.HomeTeamId));
             listBoxOfGuestGoals.ItemsSource =
                 guestGoals =
                     new ObservableCollection<Goal>(
-                        Db.Goals.Local.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.GuestTeamId));
-            Db.Players.Where(player => player.TeamId == game.HomeTeamId)
+                        App.Db.Goals.Local.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.GuestTeamId));
+            App.Db.Players.Where(player => player.TeamId == game.HomeTeamId)
                 .ToList()
                 .ForEach(player => HomeScorer.Items.Add(new ComboBoxItem() {Content = player.Name}));
-            Db.Players.Where(player => player.TeamId == game.GuestTeamId)
+            App.Db.Players.Where(player => player.TeamId == game.GuestTeamId)
                 .ToList()
                 .ForEach(player => GuestScorer.Items.Add(new ComboBoxItem() {Content = player.Name}));
             Enumerable.Range(1, 90).ToList().ForEach(num => Minute.Items.Add(new ComboBoxItem() {Content = num}));
@@ -65,11 +65,11 @@ namespace EnglishPremierLeagueApp
                     GameId = game.Id,
                     Minute = (int) ((ComboBoxItem) Minute.SelectedItem).Content,
                     PlayerId =
-                        Db.Players.First(player => player.Name == ((ComboBoxItem) HomeScorer.SelectedItem).Content).Id
+                        App.Db.Players.First(player => player.Name == ((ComboBoxItem) HomeScorer.SelectedItem).Content).Id
                 };
                 homeGoals.Add(goal);
                 goals.Add(goal);
-                Db.SaveChanges();
+                App.Db.SaveChanges();
                 HomeScorer.SelectedIndex = -1;
                 Minute.SelectedIndex = -1;
 
@@ -91,11 +91,10 @@ namespace EnglishPremierLeagueApp
                     GameId = game.Id,
                     Minute = (int) ((ComboBoxItem) Minute.SelectedItem).Content,
                     PlayerId =
-                        Db.Players.First(player => player.Name == ((ComboBoxItem) GuestScorer.SelectedItem).Content).Id
+                        App.Db.Players.First(player => player.Name == ((ComboBoxItem) GuestScorer.SelectedItem).Content).Id
                 };
                 guestGoals.Add(goal);
                 goals.Add(goal);
-                Db.SaveChanges();
                 GuestScorer.SelectedIndex = -1;
                 Minute.SelectedIndex = -1;
             }
@@ -120,7 +119,10 @@ namespace EnglishPremierLeagueApp
                 {
                     game.HomeTeamScore = int.Parse(HomeScore.Text);
                     game.GuestTeamScore = int.Parse(GuestScore.Text);
-                    ((Owner as UserView)?.CalendarItem.Content as CalendarAdmin)?.games.ResetItem(((Owner as UserView).CalendarItem.Content as CalendarAdmin).games.IndexOf(game));
+                    var calendarItem = Owner.FindName("CalendarItem") as TabItem;
+                    (calendarItem?.Content as CalendarAdmin)?.Games.ResetBindings();
+                    var mainItem = Owner.FindName("MainItem") as TabItem;
+                    (mainItem?.Content as MainTab)?.InitializeTables();
                     Close();
                 }
             }

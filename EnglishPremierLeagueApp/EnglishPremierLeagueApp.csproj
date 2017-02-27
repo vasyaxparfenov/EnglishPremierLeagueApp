@@ -70,7 +70,6 @@
     <Compile Include="CalendarAdmin.xaml.cs">
       <DependentUpon>CalendarAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CalendarViewModel.cs" />
     <Compile Include="FootballLeagueDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

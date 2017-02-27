@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 using EnglishPremierLeagueApp.View_Models;
 
@@ -22,39 +24,47 @@ namespace EnglishPremierLeagueApp
     public partial class MainTab : UserControl
         
     {
-        public FootballLeagueEntities Db = new FootballLeagueEntities();
+        
         public MainTab()
         {
             InitializeComponent();
-            Db.Seasons.ToList().ForEach(season => SeasonsComboBox.Items.Add(new ComboBoxItem() {Content = season.Name}));
+            App.Db.Seasons.ToList().ForEach(season => SeasonsComboBox.Items.Add(new ComboBoxItem() {Content = season.Name}));
             SeasonsComboBox.SelectedItem = SeasonsComboBox.Items[SeasonsComboBox.Items.Count - 1];
-            InitializeTable();
+            InitializeTables();
             SeasonsComboBox.SelectionChanged += (sender, args) =>
             {
-                InitializeTable();
+                InitializeTables();
             };
+            
+
+            
 
         }
 
-        public void InitializeTable()
+        public void InitializeTables()
         {
             Table.ItemsSource =
-                    Db.LeagueTables.Where(
+                    App.Db.LeagueTables.Where(
                             table =>
                                 table.Season.Name ==
                                 ((ComboBoxItem)SeasonsComboBox.SelectedItem).Content)
-                        .Select(
-                            table =>
-                                new TableViewModel()
-                                {
-                                    NameOfTeam = table.Team.Name,
-                                    Points = table.Points
-                                })
                         .OrderByDescending(table => table.Points)
                         .ToList();
+            Scoreboard.ItemsSource =
+                App.Db.Players.Where(
+                        player =>
+                            player.Goals.Count > 0 &&
+                            player.Goals.Where(
+                                    goal => goal.Game.Season.Name == ((ComboBoxItem) SeasonsComboBox.SelectedItem).Content)
+                                .ToList()
+                                .Count > 0)
+                    .OrderByDescending(player => player.Goals.Count)
+                    .ToList();
+            
+
         }
 
-       
+        
     }
 
        

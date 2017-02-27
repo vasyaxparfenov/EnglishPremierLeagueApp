@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EnglishPremierLeagueApp"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="694">
+             d:DesignHeight="575" d:DesignWidth="694">
     <Grid Background="White">
-        <ListView x:Name="listView" HorizontalAlignment="Left"  Height="Auto" Margin="10,15,0,0" VerticalAlignment="Top" >
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="Auto" Margin="10,15,0,0" VerticalAlignment="Top" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Home" Width="150"  DisplayMemberBinding="{Binding Path = HomeTeam.Name}"/>
+                    <GridViewColumn Header="Home" Width="150" DisplayMemberBinding="{Binding Path = HomeTeam.Name}" />
                     <GridViewColumn Header="Score" Width="50">
                         <GridViewColumn.DisplayMemberBinding>
                             <MultiBinding StringFormat="{}{0}:{1}" TargetNullValue="">
@@ -20,7 +20,7 @@
                         </GridViewColumn.DisplayMemberBinding>
                     </GridViewColumn>
                     <GridViewColumn Header="Guest" Width="150" DisplayMemberBinding="{Binding Path = GuestTeam.Name}"/>
-                    <GridViewColumn Header="Date"  Width="100" DisplayMemberBinding="{Binding Path = DateOfGame.Date}"/>
+                    <GridViewColumn Header="Date"  Width="100" DisplayMemberBinding="{Binding Path = DateOfGame, StringFormat = d }"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -28,5 +28,6 @@
         <Button x:Name="button" Content="Add" HorizontalAlignment="Left" Margin="515,299,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <ComboBox x:Name="comboBoxHomeTeam" HorizontalAlignment="Left" Margin="515,201,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="comboBoxAwayTeam" HorizontalAlignment="Left" Margin="515,247,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="deleteButton" Content="Delete" Visibility="Hidden" HorizontalAlignment="Left" Margin="515,342,0,0" VerticalAlignment="Top" Width="75" Background="Crimson" Click="Delete"/>
     </Grid>
 </UserControl>
