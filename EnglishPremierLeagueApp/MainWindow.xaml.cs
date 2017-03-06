@@ -42,6 +42,7 @@ namespace EnglishPremierLeagueApp
                 }
                 else
                 {
+                    App.CurrentUser = App.Db.Users.First(user => user.Login == textBoxLogin.Text);
                     var view = new UserView(textBoxLogin.Text);
                     view.Show();
                     Close();

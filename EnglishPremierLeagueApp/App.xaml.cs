@@ -14,5 +14,6 @@ namespace EnglishPremierLeagueApp
     public partial class App : Application
     {
         public static FootballLeagueEntities Db = new FootballLeagueEntities();
+        public static User CurrentUser;
     }
 }
