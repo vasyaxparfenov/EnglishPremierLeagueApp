@@ -10,6 +10,7 @@
         <TabControl x:Name="UserTabControl" HorizontalAlignment="Left" Height="575" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="694">
             <TabItem x:Name="MainItem" Header="Table"/>
             <TabItem x:Name="CalendarItem" Header ="Calendar"/>
+            <TabItem x:Name="TransferItem"/>
         </TabControl>
 
     </Grid>

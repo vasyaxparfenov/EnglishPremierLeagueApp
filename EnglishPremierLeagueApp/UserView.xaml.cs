@@ -25,6 +25,8 @@ namespace EnglishPremierLeagueApp
             Title = username;
             MainItem.Content = new MainTab();
             CalendarItem.Content = new CalendarAdmin(); 
+            TransferItem.Content = new TeamRostersForManager();
+            TransferItem.Header = App.CurrentUser.Team.Name;
         }
     }
 }

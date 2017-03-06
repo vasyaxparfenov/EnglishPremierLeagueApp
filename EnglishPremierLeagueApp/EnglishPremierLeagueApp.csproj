@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BoolToStringConverter.cs" />
     <Compile Include="CalendarAdmin.xaml.cs">
       <DependentUpon>CalendarAdmin.xaml</DependentUpon>
     </Compile>
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="Team.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamRostersForManager.xaml.cs">
+      <DependentUpon>TeamRostersForManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Transfer.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
@@ -155,6 +159,10 @@
     <Page Include="RegistrationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeamRostersForManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserView.xaml">
       <SubType>Designer</SubType>
