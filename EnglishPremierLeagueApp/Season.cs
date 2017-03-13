@@ -30,5 +30,10 @@ namespace EnglishPremierLeagueApp
         public virtual ICollection<LeagueTable> LeagueTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Games { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

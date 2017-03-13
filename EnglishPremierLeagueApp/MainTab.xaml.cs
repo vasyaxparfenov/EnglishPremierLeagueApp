@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -25,46 +26,12 @@ namespace EnglishPremierLeagueApp
         
     {
         
-        public MainTab()
+        public MainTab(BindingList<Goal> goals )
         {
             InitializeComponent();
-            App.Db.Seasons.ToList().ForEach(season => SeasonsComboBox.Items.Add(new ComboBoxItem() {Content = season.Name}));
-            SeasonsComboBox.SelectedItem = SeasonsComboBox.Items[SeasonsComboBox.Items.Count - 1];
-            InitializeTables();
-            SeasonsComboBox.SelectionChanged += (sender, args) =>
-            {
-                InitializeTables();
-            };
-            
-
-            
-
+            DataContext = new MainTabViewModel(goals);
         }
-
-        public void InitializeTables()
-        {
-            Table.ItemsSource =
-                    App.Db.LeagueTables.Where(
-                            table =>
-                                table.Season.Name ==
-                                ((ComboBoxItem)SeasonsComboBox.SelectedItem).Content)
-                        .OrderByDescending(table => table.Points)
-                        .ToList();
-            Scoreboard.ItemsSource =
-                App.Db.Players.Where(
-                        player =>
-                            player.Goals.Count > 0 &&
-                            player.Goals.Where(
-                                    goal => goal.Game.Season.Name == ((ComboBoxItem) SeasonsComboBox.SelectedItem).Content)
-                                .ToList()
-                                .Count > 0)
-                    .OrderByDescending(player => player.Goals.Count)
-                    .ToList();
-            
-
-        }
-
-        
+ 
     }
 
        

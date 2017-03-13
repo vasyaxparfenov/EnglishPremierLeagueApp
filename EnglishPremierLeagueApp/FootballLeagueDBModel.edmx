@@ -54,7 +54,7 @@
           <Property Name="TeamId" Type="int" />
           <Property Name="Fee" Type="money" Nullable="false" />
           <Property Name="Position" Type="nchar" MaxLength="25" />
-          <Property Name="IsIngured" Type="bit" Nullable="false" />
+          <Property Name="IsInjured" Type="bit" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" />
         </EntityType>
         <EntityType Name="Roles">
@@ -368,12 +368,12 @@
           <Property Name="TeamId" Type="Int32" />
           <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Position" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Name="IsIngured" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Goals" Relationship="Self.FK_Goals_ToTable_Players" FromRole="Players" ToRole="Goals" />
           <NavigationProperty Name="Injuries" Relationship="Self.FK_Injury_ToTable_Players" FromRole="Players" ToRole="Injury" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Players_ToTable_Teams" FromRole="Players" ToRole="Teams" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfers_ToTable_Players" FromRole="Players" ToRole="Transfers" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="IsInjured" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -434,7 +434,6 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="TeamId" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_ToTable_Roles" FromRole="Users" ToRole="Roles" />
-          <NavigationProperty Name="Teams" Relationship="Self.FK_Teams_ToTable_Users" FromRole="Users" ToRole="Teams" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Users_ToTable_Teams" FromRole="Users" ToRole="Teams" />
         </EntityType>
         <Association Name="FK_Games_ToTable_Teams_GuestTeam">
@@ -742,13 +741,13 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="FootballLeagueModel.Player">
               <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="IsInjured" ColumnName="IsInjured" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />
                 <ScalarProperty Name="Fee" ColumnName="Fee" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="IsIngured" ColumnName="IsIngured" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

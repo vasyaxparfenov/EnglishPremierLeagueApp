@@ -27,8 +27,8 @@ namespace EnglishPremierLeagueApp
         public Nullable<int> TeamId { get; set; }
         public decimal Fee { get; set; }
         public string Position { get; set; }
-        public bool IsIngured { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public bool IsInjured { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Goal> Goals { get; set; }
@@ -37,5 +37,10 @@ namespace EnglishPremierLeagueApp
         public virtual Team Team { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transfer> Transfers { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -7,12 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using EnglishPremierLeagueApp.Annotations;
+
 namespace EnglishPremierLeagueApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Game
+    public partial class Game : INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Game()
@@ -23,8 +27,37 @@ namespace EnglishPremierLeagueApp
         public int Id { get; set; }
         public int HomeTeamId { get; set; }
         public int GuestTeamId { get; set; }
-        public Nullable<int> HomeTeamScore { get; set; }
-        public Nullable<int> GuestTeamScore { get; set; }
+
+        private int? _homeTeamScore;
+
+        public Nullable<int> HomeTeamScore
+        {
+            get
+            {
+                return _homeTeamScore;
+            }
+            set
+            {
+                _homeTeamScore = value; 
+                OnPropertyChanged(); 
+            }
+        }
+
+        private int? _guestTeamScore;
+
+        public Nullable<int> GuestTeamScore
+        {
+            get
+            {
+                return _guestTeamScore;
+            }
+            set
+            {
+                _guestTeamScore = value;
+                OnPropertyChanged();
+            }
+        }
+
         public System.DateTime DateOfGame { get; set; }
         public int SeasonId { get; set; }
     
@@ -33,5 +66,13 @@ namespace EnglishPremierLeagueApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Goal> Goals { get; set; }
         public virtual Season Season { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

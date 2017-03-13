@@ -28,38 +28,11 @@ namespace EnglishPremierLeagueApp
        
         public BindingList<Game> Games;
 
-        public CalendarAdmin()
+        public CalendarAdmin(BindingList<Game> games, BindingList<Goal> goals )
         {
             InitializeComponent();
-            App.Db.Teams.ToList().ForEach(team => comboBoxHomeTeam.Items.Add(new ComboBoxItem() { Content = team.Name}));
-            App.Db.Teams.ToList().ForEach(team => comboBoxAwayTeam.Items.Add(new ComboBoxItem() { Content = team.Name}));
-            App.Db.Games.Load();
-            Games = App.Db.Games.Local.ToBindingList();
-            Games.ListChanged += (sender, args) =>
-            {
-                App.Db.SaveChanges();
-            };
-            listView.ItemsSource = Games;
-            listView.SelectionChanged += (sender, args) =>
-            {
-                deleteButton.Visibility = Visibility.Visible;
-            };
-            listView.MouseDoubleClick += (sender, args) =>
-            {
-                var gameInfo = new GameView((Game) listView.SelectedItem) {Owner = Window.GetWindow(this) };
-                gameInfo.ShowDialog();
-            };
+            DataContext = new CalendarAdminViewModel(games, goals);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Calendar.SelectedDate != null)
-                Games.Add(new Game() {DateOfGame = Calendar.SelectedDate.Value.Date, GuestTeamId = App.Db.Teams.First(team => team.Name == ((ComboBoxItem)comboBoxAwayTeam.SelectedItem).Content).Id, HomeTeamId = App.Db.Teams.First(team => team.Name == ((ComboBoxItem)comboBoxHomeTeam.SelectedItem).Content).Id, SeasonId = App.Db.Seasons.First(season => DateTime.Compare(season.BeginDate, Calendar.SelectedDate.Value) < 0 && DateTime.Compare(season.EndDate, Calendar.SelectedDate.Value) > 0).Id});
-        }
-
-        private void Delete(object sender, RoutedEventArgs e)
-        {
-            Games.Remove(listView.SelectedItem as Game);
-        }
     }
 }

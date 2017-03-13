@@ -34,21 +34,18 @@ namespace EnglishPremierLeagueApp
         
         private void LogIn(object sender, RoutedEventArgs e)
         {
-            using (var db = new FootballLeagueEntities())
+            if (!App.Db.Users.Any(user => user.Login == textBoxLogin.Text && user.Password == textBoxPassword.Password))
             {
-                if (!db.Users.Any(user => user.Login == textBoxLogin.Text && user.Password == textBoxPassword.Password))
-                {
-                    MessageBox.Show("Wrong login or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    App.CurrentUser = App.Db.Users.First(user => user.Login == textBoxLogin.Text);
-                    var view = new UserView(textBoxLogin.Text);
-                    view.Show();
-                    Close();
-                }
-
-            }        
+                MessageBox.Show("Wrong login or password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                App.CurrentUser = App.Db.Users.First(user => user.Login.Equals(textBoxLogin.Text));
+                var view = new UserView(textBoxLogin.Text);
+                view.Show();
+                Close();
+            }
+         
         }
 
         private void Register(object sender, RoutedEventArgs e)

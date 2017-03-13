@@ -15,5 +15,11 @@ namespace EnglishPremierLeagueApp
     {
         public static FootballLeagueEntities Db = new FootballLeagueEntities();
         public static User CurrentUser;
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Db.Dispose();
+            base.OnExit(e);
+        }
     }
+    
 }

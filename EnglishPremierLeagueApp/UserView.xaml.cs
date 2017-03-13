@@ -23,10 +23,13 @@ namespace EnglishPremierLeagueApp
         {
             InitializeComponent();
             Title = username;
-            MainItem.Content = new MainTab();
-            CalendarItem.Content = new CalendarAdmin(); 
-            TransferItem.Content = new TeamRostersForManager();
+            UserTabControl.DataContext = new TabControlViewModel();
+            MainItem.Content = new MainTab(((TabControlViewModel)UserTabControl.DataContext).Goals);
+            CalendarItem.Content = new CalendarAdmin(((TabControlViewModel)UserTabControl.DataContext).Games, ((TabControlViewModel)UserTabControl.DataContext).Goals); 
+            TransferItem.Content = new Transfers(((TabControlViewModel) UserTabControl.DataContext).Transfers);
             TransferItem.Header = App.CurrentUser.Team.Name;
         }
+        
+        
     }
 }
