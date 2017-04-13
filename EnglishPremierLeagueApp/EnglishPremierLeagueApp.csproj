@@ -49,6 +49,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,81 +71,119 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BoolToStringConverter.cs" />
-    <Compile Include="CalendarAdmin.xaml.cs">
+    <Compile Include="Views\Admin\AdminTabControlView.xaml.cs">
+      <DependentUpon>AdminTabControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Admin\AdminTabControlViewModel.cs" />
+    <Compile Include="Views\User\AnalysisTabView.xaml.cs">
+      <DependentUpon>AnalysisTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\User\AnalysisTabViewModel.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Views\Admin\CalendarAdmin.xaml.cs">
       <DependentUpon>CalendarAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CalendarAdminViewModel.cs" />
-    <Compile Include="FootballLeagueDBModel.cs">
+    <Compile Include="ViewModels\Admin\CalendarAdminViewModel.cs" />
+    <Compile Include="Models\FootballLeagueDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs">
+    <Compile Include="Models\Game.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GameView.xaml.cs">
+    <Compile Include="Views\Admin\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameViewModel.cs" />
-    <Compile Include="Goal.cs">
+    <Compile Include="ViewModels\Admin\GameViewModel.cs" />
+    <Compile Include="Models\Goal.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Injury.cs">
+    <Compile Include="Models\Injury.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LeagueTable.cs">
+    <Compile Include="Models\LeagueTable.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainTab.xaml.cs">
+    <Compile Include="Views\Shared\MainTab.xaml.cs">
       <DependentUpon>MainTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainTabViewModel.cs" />
-    <Compile Include="Player.cs">
+    <Compile Include="ViewModels\Shared\MainTabViewModel.cs" />
+    <Compile Include="Views\Manager\ManagerCalendarView.xaml.cs">
+      <DependentUpon>ManagerCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Manager\ManagerCalendarViewModel.cs" />
+    <Compile Include="Views\Manager\ManagerTabView.xaml.cs">
+      <DependentUpon>ManagerTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Manager\ManagerTabViewModel.cs" />
+    <Compile Include="Views\Manager\ManagerTeamView.xaml.cs">
+      <DependentUpon>ManagerTeamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Manager\ManagerViewModel.cs" />
+    <Compile Include="Views\Shared\NewsView.xaml.cs">
+      <DependentUpon>NewsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Shared\NewsViewModel.cs" />
+    <Compile Include="Models\Player.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations2.cs" />
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="Role.cs">
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Role.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Season.cs">
+    <Compile Include="Models\Season.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TabControlViewModel.cs" />
-    <Compile Include="Team.cs">
+    <Compile Include="ViewModels\Shared\TabControlViewModel.cs" />
+    <Compile Include="Models\Team.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Transfer.cs">
+    <Compile Include="Models\Transfer.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Transfers.xaml.cs">
+    <Compile Include="Views\Manager\Transfers.xaml.cs">
       <DependentUpon>Transfers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransferViewModel.cs" />
-    <Compile Include="User.cs">
+    <Compile Include="ViewModels\Manager\TransferViewModel.cs" />
+    <Compile Include="Models\User.cs">
       <DependentUpon>FootballLeagueDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationForm.xaml.cs">
+    <Compile Include="Views\Shared\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserView.xaml.cs">
+    <Compile Include="Views\User\UserTabControlView.xaml.cs">
+      <DependentUpon>UserTabControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserTeamTab.xaml.cs">
+      <DependentUpon>UserTeamTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\User\UserTeamViewModel.cs" />
+    <Compile Include="Views\User\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View_Models\TableViewModel.cs" />
-    <Page Include="CalendarAdmin.xaml">
+    <Page Include="Views\Admin\AdminTabControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameView.xaml">
+    <Page Include="Views\User\AnalysisTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainTab.xaml">
+    <Page Include="Views\Admin\CalendarAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Admin\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shared\MainTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shared\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -150,29 +191,53 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FootballLeagueDBModel.Context.cs">
+    <Compile Include="Models\FootballLeagueDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballLeagueDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="FootballLeagueDBModel.Designer.cs">
+    <Compile Include="Models\FootballLeagueDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballLeagueDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\Shared\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegistrationForm.xaml">
+    <Page Include="Views\Manager\ManagerCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Transfers.xaml">
+    <Page Include="Views\Manager\ManagerTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserView.xaml">
+    <Page Include="Views\Manager\ManagerTeamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shared\NewsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shared\RegistrationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manager\Transfers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\UserTabControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\UserTeamTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,11 +260,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="FootballLeagueDBModel.edmx">
+    <EntityDeploy Include="Models\FootballLeagueDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FootballLeagueDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="FootballLeagueDBModel.edmx.diagram">
+    <None Include="Models\FootballLeagueDBModel.edmx.diagram">
       <DependentUpon>FootballLeagueDBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -215,12 +280,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FootballLeagueDBModel.Context.tt">
+    <Content Include="Models\FootballLeagueDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FootballLeagueDBModel.edmx</DependentUpon>
       <LastGenOutput>FootballLeagueDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="FootballLeagueDBModel.tt">
+    <Content Include="Models\FootballLeagueDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FootballLeagueDBModel.edmx</DependentUpon>
       <LastGenOutput>FootballLeagueDBModel.cs</LastGenOutput>
@@ -229,6 +294,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
