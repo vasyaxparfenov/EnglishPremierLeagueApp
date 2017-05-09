@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using EnglishPremierLeagueApp.Commands;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.Properties;
 
 namespace EnglishPremierLeagueApp.ViewModels.Admin
@@ -118,7 +118,7 @@ namespace EnglishPremierLeagueApp.ViewModels.Admin
         }
 
         private string _minute;
-
+       
         public string Minute
         {
             get
@@ -253,13 +253,13 @@ namespace EnglishPremierLeagueApp.ViewModels.Admin
             _scoredGoals = new List<Goal>();
             _homeTeamScore = game.HomeTeamScore;
             _guestTeamScore = game.GuestTeamScore;
-            _homeTeamGoals = new BindingList<Goal>(_goals.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.HomeTeamId).ToList());
-            _guestTeamGoals = new BindingList<Goal>(_goals.Where(goal => goal.GameId == game.Id && goal.Player.TeamId == game.GuestTeamId).ToList());
+            _homeTeamGoals = new BindingList<Goal>(game.Goals.Where(goal => goal.Player.TeamId == game.HomeTeamId).ToList());
+            _guestTeamGoals = new BindingList<Goal>(game.Goals.Where(goal => goal.Player.TeamId == game.GuestTeamId).ToList());
             _homeTeamRoster = game.HomeTeam.Players;
             _guestTeamRoster = game.GuestTeam.Players;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+          public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

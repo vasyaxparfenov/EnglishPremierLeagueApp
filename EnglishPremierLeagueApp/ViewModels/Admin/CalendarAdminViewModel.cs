@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using EnglishPremierLeagueApp.Commands;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.Properties;
 
 namespace EnglishPremierLeagueApp.ViewModels.Admin

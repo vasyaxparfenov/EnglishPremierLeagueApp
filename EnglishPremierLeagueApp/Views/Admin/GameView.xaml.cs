@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.ViewModels.Admin;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
@@ -16,8 +16,6 @@ namespace EnglishPremierLeagueApp.Views.Admin
         {
             InitializeComponent();
             DataContext = new GameViewModel(game, goals);
-
-            
         }
 
         private void MinuteTextBoxOnKeyDownFilter(object sender, KeyEventArgs e)

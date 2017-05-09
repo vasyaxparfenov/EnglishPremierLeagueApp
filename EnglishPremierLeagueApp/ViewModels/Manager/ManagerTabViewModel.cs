@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data.Entity;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 
 namespace EnglishPremierLeagueApp.ViewModels.Manager
 {

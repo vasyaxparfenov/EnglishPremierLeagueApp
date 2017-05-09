@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 
 namespace EnglishPremierLeagueApp.ViewModels.Shared
 {

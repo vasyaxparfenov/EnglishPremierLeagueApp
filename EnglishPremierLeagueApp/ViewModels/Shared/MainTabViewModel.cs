@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using EnglishPremierLeagueApp.Commands;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 
 namespace EnglishPremierLeagueApp.ViewModels.Shared
 {

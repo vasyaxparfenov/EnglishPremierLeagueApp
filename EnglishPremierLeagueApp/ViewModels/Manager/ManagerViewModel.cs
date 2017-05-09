@@ -5,14 +5,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using EnglishPremierLeagueApp.Commands;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.Properties;
 
 namespace EnglishPremierLeagueApp.ViewModels.Manager
 {
     class ManagerViewModel : INotifyPropertyChanged
     {
-        public IEnumerable<Player> Roster => _players.Where(player => player.Team.Id == App.CurrentUser.TeamId).ToList();
+        public IEnumerable<Player> Roster => _players.Where(player => player.Team.Id == App.CurrentUser.TeamId);
         
         public IEnumerable<Transfer> TransferPropositions
             => _transfers.Where(transfer => transfer.FromId == App.CurrentUser.TeamId).ToList();
@@ -68,7 +68,7 @@ namespace EnglishPremierLeagueApp.ViewModels.Manager
                     new RelayCommand(obj =>
                     {
                         SelectedTransferProposition.Status = "Accepted";
-                        var playerToSell = _players.First(player => player.Id == _selectedTransferProposition.PlayerId);
+                        var playerToSell = _players.Single(player => player.Id == _selectedTransferProposition.PlayerId);
                         playerToSell.TeamId = _selectedTransferProposition.ToId;
                         App.Db.Entry(playerToSell).State = EntityState.Modified;
                         App.Db.SaveChanges();

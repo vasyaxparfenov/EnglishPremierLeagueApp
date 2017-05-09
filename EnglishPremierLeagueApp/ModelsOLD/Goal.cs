@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnglishPremierLeagueApp.Models
+namespace EnglishPremierLeagueApp.ModelsOLD
 {
     using System;
     using System.Collections.Generic;

@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnglishPremierLeagueApp.Models
+namespace EnglishPremierLeagueApp.ModelsOLD
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Transfer
+    public partial class Role
     {
-        public int Id { get; set; }
-        public int PlayerId { get; set; }
-        public string Status { get; set; }
-        public decimal Fee { get; set; }
-        public int FromId { get; set; }
-        public int ToId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual Player Player { get; set; }
-        public virtual Team TeamTo { get; set; }
-        public virtual Team TeamFrom { get; set; }
-        
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

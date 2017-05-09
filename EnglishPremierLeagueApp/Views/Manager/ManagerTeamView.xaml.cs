@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.ViewModels.Manager;
 
 namespace EnglishPremierLeagueApp.Views.Manager

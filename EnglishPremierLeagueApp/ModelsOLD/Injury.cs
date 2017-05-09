@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnglishPremierLeagueApp.Models
+namespace EnglishPremierLeagueApp.ModelsOLD
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Injury
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
+        public int PlayerId { get; set; }
         public string Name { get; set; }
+        public System.DateTime DateOfInjured { get; set; }
+        public System.DateTime DateOfRecover { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual Player Player { get; set; }
     }
 }

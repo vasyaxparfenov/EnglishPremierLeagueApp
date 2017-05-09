@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EnglishPremierLeagueApp.Models;
+using EnglishPremierLeagueApp.ModelsOLD;
 using EnglishPremierLeagueApp.ViewModels.Manager;
 
 namespace EnglishPremierLeagueApp.Views.Manager
