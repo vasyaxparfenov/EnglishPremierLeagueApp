@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data
 {
@@ -10,49 +11,50 @@ namespace Data
     {
         protected readonly DbContext Context;
 
+        protected IEnumerable<TEntity> Set
+            => Context.Set<TEntity>().Local.Count == 0 ? (IEnumerable<TEntity>) Context.Set<TEntity>() : Context.Set<TEntity>().Local;
+
         public Repository(DbContext context)
         {
             Context = context;
         }
+        /// <summary>
+        /// Returns an element from repository with a certain id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public TEntity Get(int id) => Context.Set<TEntity>().Find(id);
 
-        public TEntity Get(int id)
-        {
-            return Context.Set<TEntity>().Find(id);
-        }
+        /// <summary>
+        /// Returns a List of elements from repository
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetAll() => Set.ToList();
 
-        public IEnumerable<TEntity> GetAll()
-        {
-            return Context.Set<TEntity>().ToList();
-        }
+        /// <summary>
+        /// Returns a List of elements from repository oredered by choosen order type and based on predicate.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="orderType"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetAllOrderedBy<TKey>(OrderTypeEnum orderType, Func<TEntity, TKey> predicate) => orderType == OrderTypeEnum.Ascending
+            ? Set.OrderBy(predicate).ToList()
+            : Set.OrderByDescending(predicate).ToList();
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Context.Set<TEntity>().Where(predicate);
-        }
+        /// <summary>
+        /// Returns a List of elemets from repository, which corresponds to predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate) => Set.Where(predicate);
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Context.Set<TEntity>().SingleOrDefault(predicate);
-        }
+        /// <summary>
+        /// Returns first element, that corresponds to predicate or null, if there is no element that corresponds.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public TEntity SingleOrDefault(Func<TEntity, bool> predicate) => Set.SingleOrDefault(predicate);
 
-        public void Add(TEntity entity)
-        {
-            Context.Set<TEntity>().Add(entity);
-        }
-
-        public void AddRange(IEnumerable<TEntity> entities)
-        {
-            Context.Set<TEntity>().AddRange(entities);
-        }
-
-        public void Remove(TEntity entity)
-        {
-            Context.Set<TEntity>().Remove(entity);
-        }
-
-        public void RemoveRange(IEnumerable<TEntity> entities)
-        {
-            Context.Set<TEntity>().RemoveRange(entities);
-        }
     }
 }

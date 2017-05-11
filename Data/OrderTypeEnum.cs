@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Data
 {
-    public interface IUnitOfWork : IDisposable
+    public enum OrderTypeEnum
     {
-        void Save();
-        void AsyncSave();
+        Ascending,
+        Descending
     }
 }

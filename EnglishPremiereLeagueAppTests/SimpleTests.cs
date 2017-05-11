@@ -15,19 +15,6 @@ namespace EnglishPremiereLeagueAppTests
     [TestClass]
     public class UnitTest
     {
-        
-        [TestMethod]
-        public void MinDateOfScheduleTableTest()
-        {
-            using (var context = new FootballLeagueEntities())
-            {
-                
-                Assert.AreEqual(context.Games.Min(game => game.DateOfGame),
-                    context.Games.OrderBy(game => game.DateOfGame).ToList().ElementAt(0).DateOfGame);
-            }
-        }
-
-
         [TestMethod]
         public void BindingListTest()
         {
@@ -93,6 +80,23 @@ namespace EnglishPremiereLeagueAppTests
                 RepositoryFactory.Register<IRepository<Players>, Repository<Players>>();
                 var repository = RepositoryFactory.CreateRepository<IRepository<Players>>(context);
                 var player = repository.Get(0);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RepositoryFactoryException))]
+        public void RepositoryFactoryRegisterExceptionTest()
+        {
+            RepositoryFactory.Register<IEnumerable<Players>, List<Players>>();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RepositoryFactoryException))]
+        public void RepositoryFactoryCreateRepositoryExceptionTest()
+        {
+            using (var context = new FootballLeagueContext())
+            {
+                var result = RepositoryFactory.CreateRepository<IRepository<Players>>(context);
             }
         }
     }
